@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsrTech | Backend Solutions Experts</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #0f172a;
+            --accent-color: #60a5fa;
+            --light-bg: #f8fafc;
+            --dark-text: #1e293b;
+            --light-text: #f8fafc;
+            --section-padding: 5rem 2rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--dark-text);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+        }
+        
+        h3 {
+            font-size: 1.75rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+        
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(37, 99, 235, 0.1);
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--light-bg);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-text);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: var(--light-text);
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('/api/placeholder/600/400');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: var(--section-padding);
+            background-color: var(--light-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* Technologies Section */
+        .technologies {
+            padding: var(--section-padding);
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+            text-align: center;
+        }
+        
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .tech-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+        
+        .tech-name {
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+        
+        /* Industries Section */
+        .industries {
+            padding: var(--section-padding);
+            background-color: var(--light-bg);
+        }
+        
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .industry-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .industry-logo {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background-color: var(--light-bg);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .industry-logo img {
+            width: 100%;
+            height: auto;
+            max-width: 150px;
+            object-fit: contain;
+        }
+
+        
+        .industry-content {
+            padding: 1.5rem;
+        }
+
+        .industry-content h3 {
+            margin-bottom: 1rem;
+        }
+
+        .industry-content p {
+            color: var(--dark-text);
+        }
+        
+        /* About Section */
+        .about {
+            padding: var(--section-padding);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-content h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-img {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: var(--section-padding);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: var(--section-padding);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-right: 1rem;
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Form Submission Response */
+        .form-response {
+            display: none;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+        }
+        
+        .form-response.success {
+            background-color: #ecfdf5;
+            color: #047857;
+            border: 1px solid #10b981;
+        }
+        
+        .form-response.error {
+            background-color: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #ef4444;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 5rem 0;
+            }
+            
+            .hero::after {
+                width: 100%;
+                opacity: 0.1;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-btns .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        .careers {
+            padding: var(--section-padding);
+            background-color: var(--light-bg);
+        }
+
+        .careers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .job-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .job-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .job-location, .job-type {
+            color: var(--dark-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-description {
+            margin-bottom: 1.5rem;
+        }
+
+        .apply-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-decoration: none;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            background-color: #1d4ed8;
+        }
+        
+        /* Footer logo style */
+        .footer-logo-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo-img {
+            height: 30px;
+            margin-right: 10px;
+            filter: brightness(0) invert(1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <svg class="logo-img" width="40" height="40" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="50" y="75" width="200" height="50" rx="5" fill="#2D3748" />
+                        <circle cx="80" cy="100" r="8" fill="#4299E1" />
+                        <circle cx="120" cy="100" r="8" fill="#4299E1" />
+                        <circle cx="160" cy="100" r="8" fill="#4299E1" />
+                        <circle cx="200" cy="100" r="8" fill="#4299E1" />
+                        <circle cx="240" cy="100" r="8" fill="#4299E1" />
+                        <line x1="80" y1="100" x2="120" y2="100" stroke="#63B3ED" stroke-width="3" />
+                        <line x1="120" y1="100" x2="160" y2="100" stroke="#63B3ED" stroke-width="3" />
+                        <line x1="160" y1="100" x2="200" y2="100" stroke="#63B3ED" stroke-width="3" />
+                        <line x1="200" y1="100" x2="240" y2="100" stroke="#63B3ED" stroke-width="3" />
+                    </svg>
+                    Insr<span>Tech</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#technologies">Tech Stack</a></li>
+                    <li><a href="#industries">Industries</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Advanced Backend Solutions for Modern Enterprises</h1>
+                <p>InsrTech is a leader in software innovation, delivering high-quality solutions tailored to meet the most demanding backend requirements.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+                    <a href="#services" class="btn btn-secondary">Explore Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We design, develop, and optimize backend infrastructures with meticulous precision, setting new standards for performance and reliability.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Backend Development</h3>
+                    <p>Custom backend systems built with the latest technologies and best practices for optimal performance, scalability, and security.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3>API Development</h3>
+                    <p>Robust and well-documented APIs that facilitate seamless integration between your systems and third-party services.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Database Solutions</h3>
+                    <p>Optimized database architectures and management systems designed for efficiency, resilience, and rapid data access.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Security Implementation</h3>
+                    <p>Comprehensive security measures integrated throughout your backend infrastructure to protect sensitive data and prevent breaches.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud Infrastructure</h3>
+                    <p>Scalable cloud solutions designed to optimize performance, minimize costs, and ensure 24/7 availability.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>System Monitoring</h3>
+                    <p>Advanced monitoring tools and practices to ensure your systems remain reliable, secure, and performing optimally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="technologies" class="technologies">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Tech Stack</h2>
+                <p>We leverage cutting-edge technologies to deliver powerful, scalable backend solutions.</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/go.svg" alt="Go" class="tech-icon">
+                    <div class="tech-name">Go</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/python.svg" alt="Python" class="tech-icon">
+                    <div class="tech-name">Python</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@3.13.0/icons/java.svg" alt="Java" class="tech-icon">
+                    <div class="tech-name">Java</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/nodedotjs.svg" alt="Node.js" class="tech-icon">
+                    <div class="tech-name">Node.js</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/rust.svg" alt="Rust" class="tech-icon">
+                    <div class="tech-name">Rust</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/ruby.svg" alt="Ruby" class="tech-icon">
+                    <div class="tech-name">Ruby</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/ethereum.svg" alt="Web3" class="tech-icon">
+                    <div class="tech-name">Web3</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/tensorflow.svg" alt="AI/ML" class="tech-icon">
+                    <div class="tech-name">AI/ML</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/docker.svg" alt="Docker" class="tech-icon">
+                    <div class="tech-name">Docker</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/kubernetes.svg" alt="Kubernetes" class="tech-icon">
+                    <div class="tech-name">Kubernetes</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/amazonaws.svg" alt="AWS" class="tech-icon">
+                    <div class="tech-name">AWS</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/googlecloud.svg" alt="GCP" class="tech-icon">
+                    <div class="tech-name">GCP</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/microsoftazure.svg" alt="Azure" class="tech-icon">
+                    <div class="tech-name">Azure</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/postgresql.svg" alt="SQL" class="tech-icon">
+                    <div class="tech-name">SQL</div>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v8/icons/mongodb.svg" alt="NoSQL" class="tech-icon">
+                    <div class="tech-name">NoSQL</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section id="industries" class="industries">
+        <div class="container">
+            <div class="section-title">
+                <h2>Industries We Serve</h2>
+                <p>Our solutions cater to diverse industries, delivering tailored backend systems for unique business needs.</p>
+            </div>
+            <div class="industries-grid">
+                <div class="industry-card">
+                    <div class="industry-logo">
+                        <img src="assets/banking.webp" alt="Banking & Finance Logo">
+                    </div>
+                    <div class="industry-content">
+                        <h3>Banking & Finance</h3>
+                        <p>Secure, compliant, and reliable backend systems for financial institutions.</p>
+                    </div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-logo">
+                        <img src="assets/fintech.webp" alt="Fintech Logo">
+                    </div>
+                    <div class="industry-content">
+                        <h3>Fintech</h3>
+                        <p>Innovative solutions for digital payments, lending, and investment platforms.</p>
+                    </div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-logo">
+                        <img src="assets/pharma.webp" alt="Pharmaceuticals Logo">
+                    </div>
+                    <div class="industry-content">
+                        <h3>Pharmaceuticals</h3>
+                        <p>Compliant systems for managing sensitive data and complex regulatory requirements.</p>
+                    </div>
+                </div>
+                <div class="industry-card">
+                    <div class="industry-logo">
+                        <img src="assets/cybersecurity.webp" alt="Cybersecurity Logo">
+                    </div>
+                    <div class="industry-content">
+                        <h3>Cybersecurity</h3>
+                        <p>Robust backend infrastructures designed with security as the top priority.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2>About InsrTech</h2>
+                    <p>InsrTech.com is a leader in software innovation, known for delivering advanced, high-quality solutions tailored to meet the most demanding backend requirements. With deep expertise across Go, Python, Java, Node.js, and Web3 technologies, we design, develop, and optimize backend infrastructures with meticulous precision, setting new standards for performance and reliability.</p>
+                    <p>Our solutions cater to diverse industries, including banking, fintech, pharmaceuticals, and cybersecurity. This broad industry experience enables us to understand unique business challenges and deliver customized, resilient solutions that align with each sector's specific needs.</p>
+                    <p>Whether building next-generation systems from the ground up or providing steadfast support to existing architectures, InsrTech is the preferred partner for organizations seeking innovative, scalable, and secure backend systems.</p>
+                </div>
+                <div class="about-img">
+                    <img src="assets/team.webp" alt="InsrTech Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section id="careers" class="careers">
+        <div class="container">
+            <div class="section-title">
+                <h2>Join Our Team</h2>
+                <p>Explore exciting career opportunities at InsrTech and be part of a team that's shaping the future of backend technology.</p>
+            </div>
+            <div class="careers-grid">
+                <div class="job-card">
+                    <h3 class="job-title">Backend Developer</h3>
+                    <p class="job-location">Location: Remote</p>
+                    <p class="job-type">Type: Freelance</p>
+                    <p class="job-description">We are looking for a skilled Backend Developer with expertise in Golang to join our team and build scalable, high-performance systems.</p>
+                    <a href="mailto:careers@insrtech.com?subject=Application for Backend Developer" class="apply-btn">Apply Now</a>
+                </div>
+                <div class="job-card">
+                    <h3 class="job-title">DevOps Engineer</h3>
+                    <p class="job-location">Location: Remote</p>
+                    <p class="job-type">Type: Freelance</p>
+                    <p class="job-description">We are seeking a DevOps Engineer with experience in AWS, Docker, and Kubernetes to optimize our cloud infrastructure.</p>
+                    <a href="mailto:careers@insrtech.com?subject=Application for DevOps Engineer" class="apply-btn">Apply Now</a>
+                </div>
+                <div class="job-card">
+                    <h3 class="job-title">Security Specialist</h3>
+                    <p class="job-location">Location: Remote</p>
+                    <p class="job-type">Type: Freelance</p>
+                    <p class="job-description">Join our cybersecurity team to design and implement robust security measures for our backend systems.</p>
+                    <a href="mailto:careers@insrtech.com?subject=Application for Security Specialist" class="apply-btn">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Your Backend Infrastructure?</h2>
+            <p>Join us at the leading edge of technology, where our commitment to excellence drives your success with robust and future-ready backend capabilities.</p>
+            <a href="#contact" class="btn btn-secondary">Contact Us Today</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get in Touch</h2>
+                <p>Ready to discuss your project? Reach out to us today.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>123 Tech Boulevard, Innovation District, CA 94103</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>+1 (555) 123-4567</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>contact@insrtech.com</div>
+                    </div>
+                    <div class="social-links" style="margin-top: 2rem;">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">g</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">InsrTech</a>
+                    <p>Leading provider of innovative backend solutions for enterprises across diverse industries.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/insrtech" class="social-icon">in</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#services">Backend Development</a></li>
+                        <li><a href="#services">API Development</a></li>
+                        <li><a href="#services">Database Solutions</a></li>
+                        <li><a href="#services">Security Implementation</a></li>
+                        <li><a href="#services">Cloud Infrastructure</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Industries</h3>
+                    <ul>
+                        <li><a href="#industries">Banking & Finance</a></li>
+                        <li><a href="#industries">Fintech</a></li>
+                        <li><a href="#industries">Pharmaceuticals</a></li>
+                        <li><a href="#industries">Cybersecurity</a></li>
+                        <li><a href="#industries">Enterprise Solutions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 InsrTech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        
+        // Smooth Scroll for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
